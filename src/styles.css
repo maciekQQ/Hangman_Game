@@ -98,3 +98,15 @@
     rotate: -60deg;
     transform-origin: right bottom;
 }
+/*keyboard*/
+.box-keyboard{
+    display: flex;
+    gap: .25em;
+    font-size: 6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: monospace;
+}
+.word-keyboard{
+border-bottom: .1em solid black;
+}
