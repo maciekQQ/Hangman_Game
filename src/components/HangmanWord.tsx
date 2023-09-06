@@ -1,9 +1,12 @@
-export function HangmanWord() {
-  const word = "test";
-  const guessedLetters = ["t"];
+interface HangmanWordProps {
+  guessedLetters: string[];
+  wordToGuess: string;
+}
+
+export function HangmanWord({ guessedLetters, wordToGuess }: HangmanWordProps) {
   return (
     <div className="box-keyboard">
-      {word.split("").map((letter) => (
+      {wordToGuess.split("").map((letter) => (
         <>
           <span className="word-keyboard">
             <span
