@@ -5,12 +5,13 @@ import { Keyboard } from "./components/Keyboard";
 import "./styles.css";
 import words from "./wordList.json";
 
+function getWord() {
+  return words[Math.floor(Math.random() * words.length)];
+}
+
 function App() {
-  //Get random word from wordList.
-  const [wordToGuess, setWordToGuess] = useState(() => {
-    return words[Math.floor(Math.random() * words.length)];
-  });
-  //
+  const [wordToGuess, setWordToGuess] = useState(getWord);
+
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
 
   const incorrectLetters = guessedLetters.filter(
@@ -45,6 +46,22 @@ function App() {
       document.removeEventListener("keypress", handler);
     };
   }, [guessedLetters]);
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      const key = e.key;
+
+      if (key !== "Enter") return;
+      setWordToGuess(getWord());
+
+      e.preventDefault();
+      setGuessedLetters([]);
+      addGuessedLetter(key);
+    };
+    document.addEventListener("keypress", handler);
+    return () => {
+      document.removeEventListener("keypress", handler);
+    };
+  }, []);
 
   return (
     <>
