@@ -36,6 +36,7 @@ interface KeyboardProps {
 }
 export function Keyboard({
   activeLetters,
+  disabled = false,
   inactiveLetters,
   addGuessedLetter,
 }: KeyboardProps) {
@@ -50,7 +51,7 @@ export function Keyboard({
             className={`${styles.btn} ${isActive ? styles.active : ""} ${
               isInactive ? styles.inactive : ""
             }`}
-            disabled={isInactive || isActive}
+            disabled={isInactive || isActive || disabled}
             key={key}
           >
             {key}
